@@ -1,0 +1,93 @@
+@use "sass:math";
+
+.bg {
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	background: #221F2E;
+	z-index: 1;
+
+	.dotWrapper {
+		position: absolute;
+
+		@for $i from 1 through 75 {
+			&-#{$i} {
+				top: math.random(100) * 1%;
+				left: math.random(100) * 1%;
+				animation: flying (math.random(50)+20)+s ease-in-out math.div(math.random(100), -10)+s infinite alternate; 
+			}
+		}
+
+	}
+	
+	.dot {
+		width: 4px;
+		height: 4px;
+		background: #FEA039;
+		border-radius: 50%;
+		
+		@for $i from 1 through 50 {
+			&-#{$i} {
+				transform-origin: (math.random(30)-15)+px (math.random(30)-15)+px;
+				animation: rotating (math.random(20)+10)+s ease-in-out math.div(math.random(100), -10)+s infinite; 
+			}
+		}
+		
+	}
+
+}
+
+@keyframes rotating {
+	0% {
+		opacity: 0;
+		transform: rotate(0deg);
+	}
+	25%, 75% {
+		opacity: 1;
+	}
+	50% {
+		opacity: 0;
+	}
+	100% {
+		opacity: 0;
+		transform: rotate(360deg);
+	}
+}
+
+@keyframes flying {
+	0% {
+		transform: translate(0, 0);
+	}
+	10% {
+		transform: translate(20px, 50px);
+	}
+	20% {
+		transform: translate(-30px, 10px);
+	}
+	30% {
+		transform: translate(10px, 60px);
+	}
+	40% {
+		transform: translate(50px, 00px);
+	}
+	50% {
+		transform: translate(-10px, -40px);
+	}
+	60% {
+		transform: translate(-40px, 20px);
+	}
+	70% {
+		transform: translate(30px, -30px);
+	}
+	80% {
+		transform: translate(0px, -60px);
+	}
+	90% {
+		transform: translate(40px, 10px);
+	}
+	100% {
+		transform: translate(0, 0);
+	}
+}
